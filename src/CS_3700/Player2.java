@@ -14,8 +14,8 @@ public class Player2 {
 
         int points = 0;
 
-        DatagramSocket player1outsocket = new DatagramSocket(/*6972*/);
-        DatagramSocket player3outsocket = new DatagramSocket(/*6971*/);
+        DatagramSocket player1outsocket = new DatagramSocket();
+        DatagramSocket player3outsocket = new DatagramSocket();
         DatagramSocket player1insocket  = new DatagramSocket(6969);
         DatagramSocket player3insocket  = new DatagramSocket(6973);
 
@@ -49,8 +49,8 @@ public class Player2 {
 
             DatagramPacket player1outpacket = new DatagramPacket(arr, arr.length, address, 6972);
             DatagramPacket player3outpacket = new DatagramPacket(arr, arr.length, address, 6971);
-            DatagramPacket player1inpacket  = new DatagramPacket(arrIn, arrIn.length/*, address, 6969*/);
-            DatagramPacket player3inpacket  = new DatagramPacket(arrIn, arrIn.length/*, address, 6973*/);
+            DatagramPacket player1inpacket  = new DatagramPacket(arrIn, arrIn.length);
+            DatagramPacket player3inpacket  = new DatagramPacket(arrIn, arrIn.length);
 
 
 
@@ -78,49 +78,7 @@ public class Player2 {
             points += playRPS(myChoice, player1choice) + playRPS(myChoice, player3choice);
             System.out.println("I have " + points + " points.\n");
 
-
-
-
-
-
         }
-
-
-
-/*        byte arr1[] = new byte[150];
-        DatagramPacket dpack = new DatagramPacket(arr1, arr1.length);
-
-
-        while (true) {
-            dsock.receive(dpack);
-            byte arr2[] = dpack.getData();
-            int packSize = dpack.getLength();
-            String s2 = new String(arr2, 0, packSize);
-
-            System.out.println(new Date() + " " + dpack.getAddress() + ": " + dpack.getPort() + " " + s2);
-            dsock.send(dpack);
-        }*/
-
-
-
-/*
-        InetAddress address = InetAddress.getByName("DESKTOP-J4CA988");
-
-        DatagramSocket dsock = new DatagramSocket();
-        String message1 = "hello";
-        byte arr[] = message1.getBytes();
-        DatagramPacket dpack = new DatagramPacket(arr, arr.length, address, 7);
-        dsock.send(dpack);
-        Date sendTime = new Date();
-
-        dsock.receive(dpack);
-        String message2 = new String(dpack.getData());
-        Date receiveTime = new Date();
-        System.out.println((receiveTime.getTime() - sendTime.getTime()) + " ms echo time for " + message2);
-*/
-
-
-
     }
 
     public static String getChoice(String c) {

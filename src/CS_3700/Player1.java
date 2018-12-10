@@ -3,7 +3,6 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 
@@ -13,8 +12,8 @@ public class Player1 {
 
         int numMatches = Integer.parseInt(args[0]);
 
-        DatagramSocket player2outsocket = new DatagramSocket(/*6969*/);
-        DatagramSocket player3outsocket = new DatagramSocket(/*6970*/);
+        DatagramSocket player2outsocket = new DatagramSocket();
+        DatagramSocket player3outsocket = new DatagramSocket();
         DatagramSocket player2insocket  = new DatagramSocket(6972);
         DatagramSocket player3insocket  = new DatagramSocket(6974);
 
@@ -50,21 +49,17 @@ public class Player1 {
 
             DatagramPacket player2outpacket = new DatagramPacket(arr, arr.length, address, 6969);
             DatagramPacket player3outpacket = new DatagramPacket(arr, arr.length, address, 6970);
-            DatagramPacket player2inpacket  = new DatagramPacket(arrIn, arrIn.length/*, address, 6972*/);
-            DatagramPacket player3inpacket  = new DatagramPacket(arrIn, arrIn.length/*, address, 6974*/);
+            DatagramPacket player2inpacket  = new DatagramPacket(arrIn, arrIn.length);
+            DatagramPacket player3inpacket  = new DatagramPacket(arrIn, arrIn.length);
 
 
             player2outsocket.send(player2outpacket);
-            /*System.out.println("packet sent to player2");*/
             player3outsocket.send(player3outpacket);
-            /*System.out.println("packet sent to player3");*/
 
             player2insocket.receive(player2inpacket);
-            /*System.out.println("packet received from player2");*/
             String player2choice = new String(player2inpacket.getData());
 
             player3insocket.receive(player3inpacket);
-            /*System.out.println("packet received from player3");*/
             String player3choice = new String(player3inpacket.getData());
 
 
@@ -81,16 +76,6 @@ public class Player1 {
             System.out.println("I have " + points + " points.\n");
 
         }
-
-
-
-
-        //Date sendTime = new Date();
-
-        //dsock.receive(dpack);
-        //String message2 = new String(dpack.getData());
-        //Date receiveTime = new Date();
-        //System.out.println((receiveTime.getTime() - sendTime.getTime()) + " ms echo time for " + message2);
     }
 
     public static String getChoice(String c) {
